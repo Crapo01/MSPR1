@@ -5,11 +5,21 @@ import Programmation from "../components/Programmation"
 function Home() {
     return (
         <div>
-            <h1>Home</h1>
-            <Actu/>
+            
+            <Actu />
             <Programmation></Programmation>
-            <Concerts/>
-            <Carte/>
+            <Concerts />
+            <a target="_blank" style={{textDecoration: "none"}} href="http://localhost/ns_hl_wp/boutique/">
+                <div style={{
+                    color: "white",
+                    backgroundColor: "DarkGray",
+                    padding: "10px",
+                    fontFamily: "Arial",
+                    textAlign: "center",
+                    textDecoration: "none"
+                }}> BILLETTERIE</div>
+            </a>
+            <Carte />
         </div>
     );
 };

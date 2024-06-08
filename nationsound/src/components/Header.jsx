@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 function Header() {
     return (
         <div>
-            <h1>HEADER</h1>
+            <Link to={"/"}><img src="/public/images/logo_festival.png" alt="logo nation sound" /></Link>
+            
             <nav >
                 <ul >
                     <li ><Link to={"/"}>Accueil </Link> </li>
@@ -11,7 +12,7 @@ function Header() {
                     <li > <Link to={"/Partenaires"}>Partenaires </Link> </li>
                     <li ><a target="_blank"  href="http://localhost/ns_hl_wp/questions/">FAQ</a></li>
                     <li ><a target="_blank"  href="http://localhost/ns_hl_wp/partenaires/">Partenaires</a></li>
-                    <li ><a target="_blank"  href="http://localhost/ns_hl_wp/boutique/">Billeterie</a></li>
+                    <li ><a target="_blank"  href="http://localhost/ns_hl_wp/boutique/">Billetterie</a></li>
                     
                 </ul>
             </nav>
