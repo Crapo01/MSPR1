@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import Actu from "../components/Actu";
 import Carte from "../components/Carte";
 import Concerts from "../components/Concerts";
 import Programmation from "../components/Programmation"
+
 function Home() {
     return (
         <div>
@@ -19,7 +21,9 @@ function Home() {
                     textDecoration: "none"
                 }}> BILLETTERIE</div>
             </a>
-            <Carte />
+            <Link to={"/Map"}>
+            <Carte h={"50vh"} w={"50%"}/>
+            </Link>
         </div>
     );
 };
