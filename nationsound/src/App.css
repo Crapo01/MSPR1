@@ -1,0 +1,30 @@
+p {
+    font-family: "Dosis", sans-serif;
+    
+}
+h2,h3{
+    font-family: "Lobster", sans-serif;
+    font-weight: bold;    
+}
+.colorGreen{
+    color: rgb(49, 119, 27);
+}
+.colorRed{
+    color: rgb(253, 0, 0);
+}
+.colorBlue{
+    color: rgb(0, 110, 255);
+}
+.colorOrange{
+    color: rgb(255, 153, 0);
+}
+.colorPurple{
+    color: rgb(140, 0, 153);
+}
+
+.linkNone {
+    text-decoration: none;
+}
+.leaflet-routing-alternatives-container{
+    display: none;
+}

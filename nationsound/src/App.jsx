@@ -5,16 +5,17 @@ import Home from "./pages/Home"
 import Footer from "./components/Footer"
 import Partenaires from "./pages/Partenaires"
 import Programme from "./pages/Programme"
-
+import { Container } from "react-bootstrap"
+import './App.css'
 
 
 function App() {
   
 
   return (
-    <>
+    
       
-        
+       <Container className={"bg-white"}>
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,7 +24,8 @@ function App() {
         <Route path="/Programme" element={<Programme />} />        
       </Routes>
       <Footer></Footer>
-    </>
+      </Container> 
+    
   )
 }
 

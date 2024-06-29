@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Col, Image, Row } from "react-bootstrap";
 
 function Partenaires() {
     const [datas, setDatas] = useState([]);
@@ -64,16 +65,18 @@ function Partenaires() {
         if (sponsors.length > 0) {
             return (
                 <>
-                    <h2>SPONSORS</h2>
-                    <ul>
+                    <Image src="/images/Partners1.png" />
+                    <Row className={"m-3 border rounded bg-light justify-content-around"}>
                         {sponsors.map((item) => (
 
-                            <li key={item.id + 100}>
-                                <div> {item.acf.nom}</div>
-                                <img src={item.acf.logo.link} alt="" />
-                            </li>
+                            <Col className="col-12 col-md-6 col-lg-4 p-3 m-2 border rounded shadow" key={item.id + 100}>
+                                
+                                    <div> {item.acf.nom}</div>
+                                    <img src={item.acf.logo.link} alt="" />
+                                
+                            </Col>
                         ))}
-                    </ul>
+                    </Row>
                 </>
             )
         }
@@ -83,17 +86,18 @@ function Partenaires() {
         if (technique.length > 0) {
             return (
                 <>
-                    <h2>TECHNIQUE</h2>
-                    <ul>
-
+                    <Image src="/images/Tech.png" />
+                    <Row className={"m-3 border rounded bg-light justify-content-around"}>
                         {technique.map((item) => (
 
-                            <li key={item.id + 1000}>
-                                <div> {item.acf.nom}</div>
-                                <img src={item.acf.logo.link} alt="" />
-                            </li>
+                            <Col className="col-12 col-md-6 col-lg-4 p-3 m-2 border rounded shadow" key={item.id + 1000}>
+                                
+                                    <div> {item.acf.nom}</div>
+                                    <img src={item.acf.logo.link} alt="" />
+                                
+                            </Col>
                         ))}
-                    </ul>
+                    </Row>
                 </>
             )
         }
@@ -104,17 +108,18 @@ function Partenaires() {
         if (logistique.length > 0) {
             return (
                 <>
-                    <h2>LOGISTIQUE</h2>
-                    <ul>
-
+                    <Image src="/images/Logi.png" />
+                    <Row className={"m-3 border rounded bg-light justify-content-around"}>
                         {logistique.map((item) => (
 
-                            <li key={item.id + 10000}>
-                                <div> {item.acf.nom}</div>
-                                <img src={item.acf.logo.link} alt="" />
-                            </li>
+                            <Col className="col-12 col-md-6 col-lg-4 p-3 m-2 border rounded shadow" key={item.id + 100}>
+                                
+                                    <div> {item.acf.nom}</div>
+                                    <img src={item.acf.logo.link} alt="" />
+                                
+                            </Col>
                         ))}
-                    </ul>
+                    </Row>
                 </>
             )
         }
@@ -125,17 +130,18 @@ function Partenaires() {
         if (alimentation.length > 0) {
             return (
                 <>
-                    <h2>ALIMENTATION</h2>
-                    <ul>
-
+                    <Image src="/images/Alim.png" />
+                    <Row className={"m-3 border rounded bg-light justify-content-around"}>
                         {alimentation.map((item) => (
 
-                            <li key={item.id + 100000}>
-                                <div> {item.acf.nom}</div>
-                                <img src={item.acf.logo.link} alt="" />
-                            </li>
+                            <Col className="col-12 col-md-6 col-lg-4 p-3 m-2 border rounded shadow" key={item.id + 100}>
+                                
+                                    <div> {item.acf.nom}</div>
+                                    <img src={item.acf.logo.link} alt="" />
+                                
+                            </Col>
                         ))}
-                    </ul>
+                    </Row>
                 </>
             )
         }
@@ -148,7 +154,7 @@ function Partenaires() {
 
     return (
         <div>
-            <h1>PARTENAIRES</h1>
+            
             <nav >
                 <Sponsors />
                 <Technique />

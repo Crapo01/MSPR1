@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Col,Image,Row } from "react-bootstrap";
 
 function Concerts() {
     const [datas, setDatas] = useState(false);
@@ -21,19 +22,21 @@ function Concerts() {
     function Groupes() {        
         if (datas) {
             return (
-                <ul>
+                <Row>
                     {datas.map((item) => (
-
-                        <li key={item.id}>
-                            <div> {item.acf.nom}</div>
-                            <img src={item.acf.photo.link} alt="" />
+<Col className="col-12 col-md-6 col-lg-4 p-3 ">
+                        <div key={item.id} className={"p-3 border rounded shadow"}>
+                            <h2> {item.acf.nom}</h2>
+                            <img src={item.acf.photo.link} alt="" style={{width: 100+'%'}} />
                             <div> {item.acf.description}</div>
-                            <div>Origines: {item.acf.continent}</div>
-                            <div>Programmation: le {item.acf.date} à {item.acf.heure}</div>
-                            <div>Scène: {item.acf.scene}</div>
-                        </li>
+                            <h3>Origines:</h3>
+                             <p>{item.acf.continent}</p>
+                            <h3>Programmation:</h3>  <p>le {item.acf.date} à {item.acf.heure}</p>
+                            <h3>Scène:</h3> <p>{item.acf.scene}</p>
+                        </div>
+                    </Col>
                     ))}
-                </ul>
+                </Row>
             )
         } else {
             return <h2>PAS DE CONCERTS POUR LE MOMENT</h2>
@@ -41,10 +44,10 @@ function Concerts() {
     }
     return (
         <div>
-            <h1>Concerts</h1>
-            <nav >
+            <h1 className="sectionTitle colorOrange"><Image src="/images/titleIcon.png"/>CONCERTS</h1>
+            <div className={"p-3 m-3 border rounded bg-light"}>
                 <Groupes />
-            </nav>
+            </div>
         </div>
     );
 };

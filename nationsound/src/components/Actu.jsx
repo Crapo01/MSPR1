@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Col,Image,Row } from "react-bootstrap";
 import ReactHtmlParser from 'react-html-parser'; 
 
 function Actu() {
@@ -36,14 +37,15 @@ function Actu() {
         if (datasNormal) {
             return (
                 <>
-                <h2>INFORMATIONS GENERALES</h2>
-                <ul>
+                
+                <Row>
+                
                     {datasNormal.map((item) => (                        
-                        <li key={item.id}>
-                            <div> { ReactHtmlParser (item.acf.texteactu) } </div>                                                         
-                        </li>
+                        <Col key={item.id} className={"p-3 col-12 col-lg-6"} >
+                            <div className={"p-3 border rounded shadow border-primary"}> { ReactHtmlParser (item.acf.texteactu)}  </div>                                                         
+                        </Col>
                     ))}
-                </ul>
+                </Row>
                 </>
             )
         } else {
@@ -54,14 +56,15 @@ function Actu() {
         if (datasPrio) {
             return (
                 <>
-                <h2>ALERTES</h2>
-                <ul>
+                
+                <Row >
+                
                     {datasPrio.map((item) => (                        
-                        <li key={item.id}>
-                            <div> { ReactHtmlParser (item.acf.texteactu) } </div>                                                         
-                        </li>
+                        <Col key={item.id} className={"p-3 col-12 col-lg-6"} >
+                            <div className={"p-3 border rounded shadow border-danger"}> { ReactHtmlParser (item.acf.texteactu)}  </div>                                                         
+                        </Col>
                     ))}
-                </ul>
+                </Row>                
                 </>
             )
         } else {
@@ -71,10 +74,13 @@ function Actu() {
 
     return (
         <div>
-            <h1>INFORMATIONS ET ALERTES</h1>
+            
+            <h1 className="sectionTitle colorGreen"><Image src="/images/titleIcon.png"/>INFOS</h1>
+            <div className={"p-3 m-3 border rounded bg-light"}>
+            
                 <PrioEvent/>
                 <NormalEvent/>
-            
+            </div>
         </div>
     );
 };

@@ -1,24 +1,17 @@
+import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Footer() {
     return (
-        <div>
-            <h1>Footer</h1>
-            <nav >
-                <ul >
-                <li > <Link to={"/Partenaires"}>Partenaires </Link> </li>
-                    
-                    <li ><a target="_blank"  href="http://live-events-festival.rf.gd/?page_id=48">FAQ</a></li>
-                </ul>
-            </nav>
-            <nav >
-                <ul >
-                    <li ><a target="_blank" href="https://x.com/?lang=fr">twitter</a></li>
-                    
-                    <li ><a target="_blank"  href="https://www.facebook.com/?locale=fr_FR">FB</a></li>
-                </ul>
-            </nav>
-        </div>
+        
+            <Row className="bg-secondary justify-content-around align-items-center rounded" style={{height: 150+'px'}}>
+            <Col className="d-flex justify-content-center"><a target="_blank" href="https://x.com/?lang=fr"><img src="/images/x.jpg" alt="x" width={50+'px'}  /></a></Col>
+            <Col className="d-flex justify-content-center"><a target="_blank"  href="https://www.facebook.com/?locale=fr_FR"><img src="/images/fb.png" alt="fb" width={50+'px'}  /></a></Col>
+            <Col className="d-flex justify-content-center"><a target="_blank"  href="https://www.instagram.com/?locale=fr_FR"><img src="/images/ins.jpg" alt="insta" width={50+'px'}  /></a></Col>
+            <Col className="d-flex justify-content-center"><a target="_blank"  href="https://www.linkedin.com/?locale=fr_FR"><img src="/images/lin.png" alt="linkedin" width={50+'px'}  /></a></Col>
+            <Col className="d-flex justify-content-center"><a target="_blank"  href="https://www.snapchat.com/?locale=fr_FR"><img src="/images/snap.png" alt="snapchat" width={50+'px'}  /></a></Col>
+            </Row>            
+        
     );
 };
 

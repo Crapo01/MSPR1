@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Col, Container, Image, Row } from "react-bootstrap";
 
 function Programmation() {
     const [datas, setDatas] = useState([]);
@@ -10,8 +11,8 @@ function Programmation() {
     const filteredEvents = datas.filter
         ((event) =>
             (event.acf.date === filterDay || filterDay === "tout") &&
-            (event.acf.type === filterType || filterType === "tout")&&
-            (event.acf.heure.slice(0,2) >= filterHour || filterHour === "tout") &&
+            (event.acf.type === filterType || filterType === "tout") &&
+            (event.acf.heure.slice(0, 2) >= filterHour || filterHour === "tout") &&
             (event.acf.scene === filterScene || filterScene === "tout")
         )
 
@@ -35,58 +36,68 @@ function Programmation() {
         if (datas.length > 0) {
             return (
                 <>
-                <div>
-                    <div>
-                        <span className="text-style4">Jour</span>
-                        <select onChange={(e) => setFilterDay(e.target.value)} value={filterDay} >
-                            <option value={"tout"}>tout</option>
-                            <option value={"14 juin"}>14 juin</option>
-                            <option value={"15 juin"}>15 juin</option>
-                            <option value={"16 juin"}>16 juin</option>
-                        </select>
-                    </div>
-                    <div>
-                        <span className="text-style4">Heure</span>
-                        <select onChange={(e) => setFilterHour(e.target.value)} value={filterHour} >
-                            <option value={"tout"}>tout</option>
-                            <option value={"18"}>à partir de 18h</option>
-                            <option value={"19"}>à partir de 19h</option>
-                            <option value={"20"}>à partir de 20h</option>
-                            <option value={"21"}>à partir de 21h</option>
-                        </select>
-                    </div>
-                    <div>
-                        <span className="text-style4">Type</span>
-                        <select onChange={(e) => setFilterType(e.target.value)} value={filterType} >
-                            <option value={"tout"}>tout</option>
-                            <option value={"concert"}>seulement les concerts</option>
-                            <option value={"rencontre"}>seulement les rencontres</option>                            
-                        </select>
-                    </div>
-                    <div>
-                        <span className="text-style4">Scene</span>
-                        <select onChange={(e) => setFilterScene(e.target.value)} value={filterScene} >
-                            <option value={"tout"}>tout</option>
-                            <option value={"principale"}>principale</option>
-                            <option value={"nord"}>nord</option> 
-                            <option value={"ouest"}>ouest</option>
-                            <option value={"sud"}>sud</option> 
-                            <option value={"est"}>est</option>                             
-                        </select>
-                    </div>
-                </div>
-                    
-                    <form action=""></form>
-                    <ul>
-                        {filteredEvents.map((item) => (
 
-                            <li key={item.id}>
-                                <div> {item.acf.nom}</div>
-                                <div>le {item.acf.date} à {item.acf.heure}</div>
-                                <div>Scène: {item.acf.scene}</div>
-                            </li>
-                        ))}
-                    </ul>
+                    <Row >
+                        <Col className="flex-column col-12 col-md-4">
+                            <Col>
+                                <div className="text-style4">Jour</div>
+                                <select onChange={(e) => setFilterDay(e.target.value)} value={filterDay} style={{ width: 150 + 'px' }}>
+                                    <option value={"tout"}>tout</option>
+                                    <option value={"14 juin"}>14 juin</option>
+                                    <option value={"15 juin"}>15 juin</option>
+                                    <option value={"16 juin"}>16 juin</option>
+                                </select>
+                            </Col>
+                            <Col>
+                                <div className="text-style4">Heure</div>
+                                <select onChange={(e) => setFilterHour(e.target.value)} value={filterHour} style={{ width: 150 + 'px' }}>
+                                    <option value={"tout"}>tout</option>
+                                    <option value={"18"}>à partir de 18h</option>
+                                    <option value={"19"}>à partir de 19h</option>
+                                    <option value={"20"}>à partir de 20h</option>
+                                    <option value={"21"}>à partir de 21h</option>
+                                </select>
+                            </Col>
+                            <Col>
+                                <div className="text-style4">Type</div>
+                                <select onChange={(e) => setFilterType(e.target.value)} value={filterType} style={{ width: 150 + 'px' }}>
+                                    <option value={"tout"}>tout</option>
+                                    <option value={"concert"}>les concerts</option>
+                                    <option value={"rencontre"}>les rencontres</option>
+                                </select>
+                            </Col>
+                            <Col>
+                                <div className="text-style4">Scene</div>
+                                <select onChange={(e) => setFilterScene(e.target.value)} value={filterScene} style={{ width: 150 + 'px' }}>
+                                    <option value={"tout"}>tout</option>
+                                    <option value={"principale"}>principale</option>
+                                    <option value={"nord"}>nord</option>
+                                    <option value={"ouest"}>ouest</option>
+                                    <option value={"sud"}>sud</option>
+                                    <option value={"est"}>est</option>
+                                </select>
+                            </Col>
+                        </Col>
+                        <Col >
+                            <Row className="justify-content-evenly">
+
+                            {filteredEvents.map((item) => (
+
+                                <Col  className="col-6 col-lg-4" key={item.id} >
+                                    <div className={"m-3"}>
+                                    <div className={"p-2 border border-success rounded card shadow"} >
+                                        <h2 className="card-title"> {item.acf.nom}</h2>
+                                        <div>le {item.acf.date} à {item.acf.heure}</div>
+                                        <div>Scène: {item.acf.scene}</div>
+                                    </div>
+                                    </div>
+                                </Col>
+                            ))}
+                            </Row>
+                        </Col>
+                    </Row>
+
+
                 </>
             )
         } else {
@@ -96,10 +107,10 @@ function Programmation() {
 
     return (
         <div>
-            <h1>Programmation</h1>
-            <nav >
+            <h1 className="sectionTitle colorPurple"><Image src="/images/titleIcon.png"/>PROGRAMMATION</h1>
+            <div className={"p-3 m-3 border rounded bg-light"}>
                 <Evenement />
-            </nav>
+            </div>
         </div>
     );
 };

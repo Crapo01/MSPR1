@@ -3,13 +3,14 @@ import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 
 const createRoutineMachineLayer = (props) => {
+  console.log({props})
   const instance = L.Routing.control({
     waypoints: [
-      L.latLng(3,3),
-      L.latLng(48.8321, 2.4088)
+      L.latLng(props.start),
+      L.latLng(props.end)
     ],
     lineOptions: {
-      styles: [{ color: "red", weight: 4 }]
+      styles: [{ color: "red", weight: 6 }]
     },
     show: false,
     addWaypoints: false,
