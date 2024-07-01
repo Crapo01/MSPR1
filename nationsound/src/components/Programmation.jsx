@@ -83,7 +83,7 @@ function Programmation() {
 
                             {filteredEvents.map((item) => (
 
-                                <Col  className="col-6 col-lg-4" key={item.id} >
+                                <Col  className="col-md-6 col-lg-4" key={item.id} >
                                     <div className={"m-3"}>
                                     <div className={"p-2 border border-success rounded card shadow"} >
                                         <h2 className="card-title"> {item.acf.nom}</h2>
@@ -101,17 +101,17 @@ function Programmation() {
                 </>
             )
         } else {
-            return <h2>PAS D'EVENEMENT POUR LE MOMENT</h2>
+            return <h2><Image src="/images/loading.gif"/>Pas d'evenements pour le moment</h2>
         }
     }
 
     return (
-        <div>
-            <h1 className="sectionTitle colorPurple"><Image src="/images/titleIcon.png"/>PROGRAMMATION</h1>
-            <div className={"p-3 m-3 border rounded bg-light"}>
+        
+            <div className={"p-3 my-5 border rounded bg-light"}>
+            <h1 className="sectionTitle colorPurple"><Image src="/images/title2.png"/>PROGRAMMATION</h1>
                 <Evenement />
             </div>
-        </div>
+        
     );
 };
 

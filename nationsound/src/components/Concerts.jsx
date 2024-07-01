@@ -28,7 +28,7 @@ function Concerts() {
                         <div key={item.id} className={"p-3 border rounded shadow"}>
                             <h2> {item.acf.nom}</h2>
                             <img src={item.acf.photo.link} alt="" style={{width: 100+'%'}} />
-                            <div> {item.acf.description}</div>
+                            <p> {item.acf.description}</p>
                             <h3>Origines:</h3>
                              <p>{item.acf.continent}</p>
                             <h3>Programmation:</h3>  <p>le {item.acf.date} à {item.acf.heure}</p>
@@ -39,16 +39,16 @@ function Concerts() {
                 </Row>
             )
         } else {
-            return <h2>PAS DE CONCERTS POUR LE MOMENT</h2>
+            return <h2><Image src="/images/loading.gif"/>Pas de concerts pour le moment</h2>
         }
     }
     return (
-        <div>
-            <h1 className="sectionTitle colorOrange"><Image src="/images/titleIcon.png"/>CONCERTS</h1>
-            <div className={"p-3 m-3 border rounded bg-light"}>
+        
+            <div className={"p-3 m-md-5 border rounded bg-light"}>
+            <h1 className="sectionTitle colorOrange"><Image src="/images/title3.png"/>CONCERTS</h1>
                 <Groupes />
             </div>
-        </div>
+        
     );
 };
 

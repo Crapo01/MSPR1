@@ -15,7 +15,7 @@ function App() {
   return (
     
       
-       <Container className={"bg-white"}>
+       <Container >
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home />} />

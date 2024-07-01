@@ -49,7 +49,7 @@ function Actu() {
                 </>
             )
         } else {
-            return <h3>PAS D'INFOS POUR LE MOMENT</h3>
+            return <h3><Image src="/images/loading.gif"/>Pas d'infos pour le moment</h3>
         }
     }
     function PrioEvent() {        
@@ -68,20 +68,20 @@ function Actu() {
                 </>
             )
         } else {
-            return <h3>PAS D'ALERTES POUR LE MOMENT</h3>
+            return <h3><Image src="/images/loading.gif"/>Pas d'alertes pour le moment</h3>
         }
     }
 
     return (
-        <div>
+        
             
-            <h1 className="sectionTitle colorGreen"><Image src="/images/titleIcon.png"/>INFOS</h1>
-            <div className={"p-3 m-3 border rounded bg-light"}>
+            <div className={"p-3 my-5 mx-md-5 border rounded bg-light"}>
+            <h1 className="sectionTitle colorGreen"><Image src="/images/title1.png"/>INFOS</h1>
             
                 <PrioEvent/>
                 <NormalEvent/>
             </div>
-        </div>
+        
     );
 };
 
