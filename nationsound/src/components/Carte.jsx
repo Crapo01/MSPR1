@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
+import { useContext, useEffect, useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer, Tooltip, useMap } from "react-leaflet";
 import * as L from "leaflet";
-import { Anchor, Col, Image, Row } from "react-bootstrap";
+import { Button, Col, Image, Row } from "react-bootstrap";
 import RoutingMachine from "./RoutingMachine";
+import { Link } from "react-router-dom";
+import { ConcertContext } from "./context";
 
 
 
@@ -40,7 +42,7 @@ function Carte(props) {
     });
 
 
-
+    const groupe = useContext(ConcertContext)
   const [datas, setDatas] = useState([]);
   const [prog, setProg] = useState([]);
   const [filteredScenes, setFilteredScenes] = useState([]);
@@ -69,13 +71,16 @@ function Carte(props) {
     console.log("fetch datas")
     console.log(datas,filteredScenes)
     try {
-      let response = await fetch("http://localhost/ns_hl_wp/wp-json/acf/v3/pointeur");
+      let response = await fetch("https://nationsoundluc.rf.gd/wpdb/wp-json/acf/v3/pointeur");
+      // let response = await fetch("http://localhost/ns_hl_wp/wp-json/acf/v3/pointeur");
       let data = await response.json();
       console.log("data1:"+data)
       if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data) };
-      response = await fetch("http://localhost/ns_hl_wp/wp-json/acf/v3/programmation");
+      response = await fetch("https://nationsoundluc.rf.gd/wpdb/wp-json/acf/v3/concerts");
+      // response = await fetch("http://localhost/ns_hl_wp/wp-json/acf/v3/concerts");
       data = await response.json();
-      console.log("data2"+data)
+      console.log("data2")
+      console.log(data)
       if (data.code === "rest_no_route") { throw "error:rest_no_route" } else {
         
         setProg(data)
@@ -93,8 +98,9 @@ function Carte(props) {
     let filteredProg = prog.filter((event) =>
         (
          
-          parseInt(event.acf.date) === parseInt(new Date().toLocaleDateString()) + 14 &&
-          event.acf.type === "concert"
+          parseInt(event.acf.date) === parseInt(new Date().toLocaleDateString()) + 10
+          //  &&
+          // event.acf.type === "concert"
         )
         )
     console.log(filteredProg)
@@ -104,7 +110,7 @@ function Carte(props) {
         filteredProg.map((e)=>(datas.map((ee)=> {
           const str= ee.acf.nom;
           console.log(e.acf.scene+":"+str.substr(6))
-          if(e.acf.scene === str.substr(6)) temp.push(ee)
+          if(e.acf.scene === str.substr(6)) temp.push({prog:e,mark:ee})
           }
         )))
         console.log(temp)
@@ -131,14 +137,16 @@ function Carte(props) {
 
   
   function LocationMarker() {
-    console.log("vpos" + virtualPosition)
+    console.log("vpos" + virtualPosition+"locator"+locator+"position"+position)
 
     if (locator && !position) {
+      console.log("locating position")
       const map = useMap()
       map.locate({ setView: false, maxZoom: 16 });
       function onLocationFound(e) {
 
         virtualPosition ? setPosition({ lat: 48.837078, lng: 2.442521 }) : setPosition(e.latlng)
+        console.log("located at:"+position)
 
       }
 
@@ -178,7 +186,7 @@ function Carte(props) {
         </Col>
         <Col className="d-flex justify-content-center">
           {!locator ?
-            <button onClick={(e) => { setLocator(true) }}>Activer la geolocalisation</button> :
+            <button onClick={(e) => {alert("Activer la geolocalisation pour utiliser cette option"); setLocator(true) }}>Activer la geolocalisation</button> :
             <button onClick={(e) => { setLocator(false);setPosition(null) }}>Désactiver la geolocalisation</button>}
         </Col>
         <Col className="d-flex justify-content-center">
@@ -225,13 +233,28 @@ function Carte(props) {
               <ul>
                 {filteredScenes.map((item) => (
 
-                  <li key={item.id}>
+                  <li key={item.mark.id}>
 
-                    {<Marker position={[item.acf.lat, item.acf.lon]} icon={selectColor(item.acf.type)}>
+                    {<Marker position={[item.mark.acf.lat, item.mark.acf.lon]} icon={selectColor(item.mark.acf.type)}>
                       <Popup>
-                        <h2>{item.acf.nom}</h2>
+                        <h2>{item.mark.acf.nom}</h2>
+                        <h6>En cours: {item.prog.acf.nom}</h6>
+                        <Link to={"/Details"} style={{ textDecoration: 'none' }} >
+                                    <Button className='btn-dark my-2'
+                                        onClick={() => (groupe.updateGroupe({ 
+                                            nom: item.prog.acf.nom,
+                                            image: item.prog.acf.photo.link,
+                                            description: item.prog.acf.description,
+                                            origine: item.prog.acf.continent,
+                                            programmation: {date: item.prog.acf.date,heure: item.prog.acf.heure},
+                                            scene: item.prog.acf.scene
+                                            }))}>
+                                        plus de details...
+                                    </Button>
+                                </Link>
+                                <br />
                         {locator ?
-                          <button onClick={() => setArrivee([item.acf.lat, item.acf.lon])}>Y aller ...</button> : null}
+                          <Button className='btn-dark my-2' onClick={() => setArrivee([item.mark.acf.lat, item.mark.acf.lon])}>Y aller ...</Button> : null}
                       </Popup>
                     </Marker>}
                   </li>

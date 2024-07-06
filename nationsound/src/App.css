@@ -36,6 +36,7 @@ h2,h3{
     height: auto;
 }
 #root{
-    background: url(/images/rainbowBg.jpg) no-repeat center fixed;
+    background: url(/images/imageBg.jpg) no-repeat center fixed;
     background-color: black;
+    background-size: cover;
 }

@@ -8,13 +8,14 @@ function Actu() {
     
     async function fetchWordPressData() {
         try {
+            // const response = await fetch("https://nationsoundluc.rf.gd/wpdb/wp-json/acf/v3/actu");
             const response = await fetch("http://localhost/ns_hl_wp/wp-json/acf/v3/actu");
             const data = await response.json();
             console.log(data)
             if (data.code === "rest_no_route") {throw "error:rest_no_route"} else {sortDatas(data)} ;
 
         } catch (error) {
-            console.log("Une erreur est survenue dans l'appel API: ")
+            console.log("Une erreur est survenue dans l'appel API actu: ")
             console.log(error)       
         }
     }
