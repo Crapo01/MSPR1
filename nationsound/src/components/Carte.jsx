@@ -95,12 +95,15 @@ function Carte(props) {
   }
 
   function onStageSorting() {
-    let filteredProg = prog.filter((event) =>
+    // sert uniquement pour la demo des concerts en cours pour shift l'heure et la date
+    const deltaTime=18;
+    const deltaDate=6;
+    let filteredProg = prog.filter((e) =>
         (
-         
-          parseInt(event.acf.date) === parseInt(new Date().toLocaleDateString()) + 10
-          //  &&
-          // event.acf.type === "concert"
+          parseInt(e.acf.heure.substr(0,2))+2>= parseInt(new Date().toLocaleTimeString().substr(0,2)) + deltaTime &&
+         parseInt(e.acf.heure.substr(0,2))>= parseInt(new Date().toLocaleTimeString().substr(0,2)) + deltaTime &&
+          parseInt(e.acf.date) === parseInt(new Date().toLocaleDateString()) + deltaDate
+          
         )
         )
     console.log(filteredProg)
@@ -109,7 +112,10 @@ function Carte(props) {
         console.log(datas)
         filteredProg.map((e)=>(datas.map((ee)=> {
           const str= ee.acf.nom;
-          console.log(e.acf.scene+":"+str.substr(6))
+          console.log(e.acf.scene+":"+str.substr(6));
+          console.log(parseInt(e.acf.heure.substr(0,2))+2)
+          console.log(parseInt(new Date().toLocaleTimeString().substr(0,2)) + deltaTime)
+          
           if(e.acf.scene === str.substr(6)) temp.push({prog:e,mark:ee})
           }
         )))
@@ -142,7 +148,7 @@ function Carte(props) {
     if (locator && !position) {
       console.log("locating position")
       const map = useMap()
-      map.locate({ setView: false, maxZoom: 16 });
+      map.locate({ setView: false, maxZoom: 14 });
       function onLocationFound(e) {
 
         virtualPosition ? setPosition({ lat: 48.837078, lng: 2.442521 }) : setPosition(e.latlng)
@@ -198,7 +204,7 @@ function Carte(props) {
 
         
 
-        <MapContainer style={{ height: props.h, width: props.w }} center={[48.8375, 2.4432]} maxZoom={17} zoom={17} scrollWheelZoom={false} locate={{ setView: true, maxZoom: 16 }}>
+        <MapContainer style={{ height: props.h, width: props.w }} center={[48.8375, 2.4432]} maxZoom={16} zoom={17} scrollWheelZoom={false} locate={{ setView: true, maxZoom: 16 }}>
 
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

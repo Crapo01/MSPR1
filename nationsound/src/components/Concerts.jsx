@@ -32,7 +32,9 @@ function Concerts() {
                         <Col className="col-12 col-md-6 col-lg-4 p-3 ">
                             <div key={item.id} className={"p-3 border rounded shadow"}>
                                 <h2> {item.acf.nom}</h2>
-                                <img src={item.acf.photo.link} alt="" style={{ width: 100 + '%' }} />                                                               
+                                <img src={item.acf.photo.link} alt="" style={{ width: 100 + '%' }} />
+                                <div>le {item.acf.date} à {item.acf.heure}</div>
+                                        <div>Scène: {item.acf.scene}</div>                                                               
                                 <Link to={"/Details"} style={{ textDecoration: 'none' }} >
                                     <Button className='btn-dark m-4'
                                         onClick={() => (groupe.updateGroupe({ 
