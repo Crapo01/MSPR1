@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function Programmation() {
+    const [localDatas,setLocalDatas] = useLocalStorage("programmation")
     const [datas, setDatas] = useState([]);
     const [filterDay, setFilterDay] = useState("tout");
     const [filterType, setFilterType] = useState("tout");
@@ -21,7 +23,7 @@ function Programmation() {
             const response = await fetch("https://nationsoundluc.rf.gd/wpdb/wp-json/acf/v3/programmation");
             const data = await response.json();
             console.log(data)
-            if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data) };
+            if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data);setLocalDatas(data) };
 
         } catch (error) {
             console.log("Une erreur est survenue dans l'appel API: ")
@@ -29,6 +31,8 @@ function Programmation() {
         }
     }
     useEffect(() => {
+        console.log(localDatas);
+        if (localDatas) {console.log("uselocalstorage");setDatas(localDatas)}
         fetchWordPressData();
     }, []);
 

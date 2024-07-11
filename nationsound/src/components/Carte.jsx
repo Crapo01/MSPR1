@@ -5,6 +5,7 @@ import { Button, Col, Image, Row } from "react-bootstrap";
 import RoutingMachine from "./RoutingMachine";
 import { Link } from "react-router-dom";
 import { ConcertContext } from "./context";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 
 
@@ -43,6 +44,7 @@ function Carte(props) {
 
 
     const groupe = useContext(ConcertContext)
+    const [localDatas,setLocalDatas] = useLocalStorage("pointeurs")
   const [datas, setDatas] = useState([]);
   const [prog, setProg] = useState([]);
   const [filteredScenes, setFilteredScenes] = useState([]);
@@ -62,6 +64,8 @@ function Carte(props) {
 
 
   useEffect(() => {
+    console.log(localDatas);
+    if (localDatas) {console.log("uselocalstorage");setDatas(localDatas)}
     fetchWordPressData();
   }, []);
   
@@ -75,7 +79,7 @@ function Carte(props) {
       // let response = await fetch("http://localhost/ns_hl_wp/wp-json/acf/v3/pointeur");
       let data = await response.json();
       console.log("data1:"+data)
-      if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data) };
+      if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data);setLocalDatas(data) };
       response = await fetch("https://nationsoundluc.rf.gd/wpdb/wp-json/acf/v3/concerts");
       // response = await fetch("http://localhost/ns_hl_wp/wp-json/acf/v3/concerts");
       data = await response.json();

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Col,Image,Row } from "react-bootstrap";
 import ReactHtmlParser from 'react-html-parser'; 
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function Actu() {
+    const [localDatas,setLocalDatas] = useLocalStorage("actu")
     const [datasNormal, setDatasNormal] = useState(false);
     const [datasPrio, setDatasPrio] = useState(false);
     
@@ -20,10 +22,13 @@ function Actu() {
         }
     }
     useEffect(() => {
+        console.log(localDatas);
+        if (localDatas) {console.log("uselocalstorage");sortDatas(localDatas)}
         fetchWordPressData();
     }, []);
 
     function sortDatas(data) {
+        setLocalDatas(data)
         const normalTemp=new Array;
         const prioTemp=new Array;
         data.map((item) => (

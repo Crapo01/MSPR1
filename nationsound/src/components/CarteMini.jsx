@@ -2,12 +2,32 @@
 import { MapContainer, Marker, Popup, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import { Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { useEffect, useState } from "react";
 
 
-function CarteMini(props) {
+function CarteMini() {
   
+  const [localDatas,setLocalDatas] = useLocalStorage("pointeurs")
+  const [datas, setDatas] = useState([]);
+  async function fetchWordPressData() {
+    try {
+        const response = await fetch("https://nationsoundluc.rf.gd/wpdb/wp-json/acf/v3/pointeur");
+        // const response = await fetch("http://localhost/ns_hl_wp/wp-json/acf/v3/pointeur");
+        const data = await response.json();
+        console.log(data)
+        if (data.code === "rest_no_route") { throw "error:rest_no_route" } else { setDatas(data);setLocalDatas(data) };
 
-
+    } catch (error) {
+        console.log("Une erreur est survenue dans l'appel API: ")
+        console.log(error)
+    }
+}
+useEffect(() => {
+    console.log(localDatas);
+    if (localDatas) {console.log("uselocalstorage");setDatas(localDatas)}
+    fetchWordPressData();
+}, []);
   
   return (
     <>
@@ -21,7 +41,20 @@ function CarteMini(props) {
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
       
-         
+      if ({datas.lenght > 0}) {
+
+<ul>
+  {datas.map((item) => (
+
+    <li key={item.id}>
+
+      {<Marker position={[item.acf.lat, item.acf.lon]} >
+        <Tooltip>{item.acf.nom} </Tooltip>        
+      </Marker>}
+    </li>
+  ))}
+</ul>
+}  
          
     </MapContainer>
     </Link>
