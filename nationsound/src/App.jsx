@@ -10,6 +10,8 @@ import { Container } from "react-bootstrap"
 import './App.css'
 import { ConcertContext } from "./components/context"
 import { useState } from "react"
+import Faq from "./pages/Faq"
+import Mentions from "./pages/Mentions"
 
 
 function App() {
@@ -28,7 +30,9 @@ function App() {
         <Route path="/Map" element={<Map />} />
         <Route path="/Partenaires" element={<Partenaires />} />
         <Route path="/Programme" element={<Programme />} />
-        <Route path="/Details" element={<Details />} />        
+        <Route path="/Details" element={<Details />} />
+        <Route path="/Faq" element={<Faq />} /> 
+        <Route path="/Mentions" element={<Mentions />} />       
       </Routes>
       <Footer></Footer>
       </Container> 

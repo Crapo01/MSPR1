@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import { Col, Image, Row } from "react-bootstrap";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 function Programmation() {

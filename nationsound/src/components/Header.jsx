@@ -18,7 +18,7 @@ function Header() {
             <Nav.Link> <Link to={"/Map"} style={{ textDecoration: 'none' }}><Button className='btn-light'>CARTE</Button></Link></Nav.Link>
             <Nav.Link> <Link to={"/Programme"} style={{ textDecoration: 'none' }}><Button className='btn-light'>PROGRAMME</Button></Link></Nav.Link>
             <Nav.Link> <Link to={"/Partenaires"}style={{ textDecoration: 'none' }}><Button className='btn-light'>PARTENAIRES</Button></Link></Nav.Link>
-            <Nav.Link target="_blank"  href="https://nationsoundluc.rf.gd/wpdb/questions/"><Button className='btn-light'>FAQ</Button></Nav.Link>
+            <Nav.Link> <Link to={"/Faq"}style={{ textDecoration: 'none' }}><Button className='btn-light'>FAQ</Button></Link></Nav.Link>            
             <Nav.Link target="_blank"  href="https://nationsoundluc.rf.gd/wpdb/boutique/"><Button className='btn-light'>BOUTIQUE</Button></Nav.Link>           
           </Nav>
         </Navbar.Collapse>

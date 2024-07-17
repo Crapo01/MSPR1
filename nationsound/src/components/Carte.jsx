@@ -100,8 +100,8 @@ function Carte(props) {
 
   function onStageSorting() {
     // sert uniquement pour la demo des concerts en cours pour shift l'heure et la date
-    const deltaTime=18;
-    const deltaDate=6;
+    const deltaTime=9;
+    const deltaDate=-3;
     let filteredProg = prog.filter((e) =>
         (
           parseInt(e.acf.heure.substr(0,2))+2>= parseInt(new Date().toLocaleTimeString().substr(0,2)) + deltaTime &&

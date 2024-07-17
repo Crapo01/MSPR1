@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { Col, Image, Row } from "react-bootstrap";
 
+
 function Partenaires() {
-    const [datas, setDatas] = useState([]);
+    const [datas, setDatas] = useState([]);    
     const [sponsors, setSponsors] = useState([]);
     const [technique, setTechnique] = useState([]);
     const [logistique, setLogistique] = useState([]);
     const [alimentation, setAlimentation] = useState([]);
 
     function sortingPartnersByCategory(category, partner) {
-        console.log(category)
+        console.log(category);        
         category.map((cat) => {
             switch (cat) {
                 case "technique":
@@ -39,11 +40,12 @@ function Partenaires() {
     async function fetchWordPressData() {
         try {
             const response = await fetch("https://nationsoundluc.rf.gd/wpdb/wp-json/acf/v3/partenaires");
+            // const response = await fetch("http://localhost/ns_hl_wp/wp-json/acf/v3/partenaires");
             const data = await response.json();
             console.log(data)
             if (data.code === "rest_no_route") { throw "error:rest_no_route" }
             else {
-                setDatas(data);
+                setDatas(data);                
                 data.map((item) => sortingPartnersByCategory(item.acf.type, item));
                 console.log("sponsors in use effect");
                 console.log(sponsors);
@@ -54,7 +56,7 @@ function Partenaires() {
             console.log(error)
         }
     }
-    useEffect(() => {
+    useEffect(() => {  
         fetchWordPressData();
     }, []);
     
