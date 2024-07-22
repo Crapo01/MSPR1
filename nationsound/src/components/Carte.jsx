@@ -45,6 +45,7 @@ function Carte(props) {
 
     const groupe = useContext(ConcertContext)
     const [localDatas,setLocalDatas] = useLocalStorage("pointeurs")
+    const [localConcerts,setLocalConcerts] = useLocalStorage("concerts")
   const [datas, setDatas] = useState([]);
   const [prog, setProg] = useState([]);
   const [filteredScenes, setFilteredScenes] = useState([]);
@@ -87,8 +88,8 @@ function Carte(props) {
       console.log(data)
       if (data.code === "rest_no_route") { throw "error:rest_no_route" } else {
         
-        setProg(data)
-
+        setProg(data);
+setLocalConcerts(data)
          
       };
 
@@ -99,14 +100,13 @@ function Carte(props) {
   }
 
   function onStageSorting() {
-    // sert uniquement pour la demo des concerts en cours pour shift l'heure et la date
-    const deltaTime=9;
-    const deltaDate=-3;
+    
+    
     let filteredProg = prog.filter((e) =>
         (
-          parseInt(e.acf.heure.substr(0,2))+2>= parseInt(new Date().toLocaleTimeString().substr(0,2)) + deltaTime &&
-         parseInt(e.acf.heure.substr(0,2))>= parseInt(new Date().toLocaleTimeString().substr(0,2)) + deltaTime &&
-          parseInt(e.acf.date) === parseInt(new Date().toLocaleDateString()) + deltaDate
+         parseInt(new Date().toLocaleTimeString().substr(0,2))<= parseInt(e.acf.heure.substr(0,2)+2)  &&
+         parseInt(new Date().toLocaleTimeString().substr(0,2))>= parseInt(e.acf.heure.substr(0,2)) &&
+          parseInt(e.acf.date) === parseInt(new Date().toLocaleDateString())
           
         )
         )
@@ -118,7 +118,7 @@ function Carte(props) {
           const str= ee.acf.nom;
           console.log(e.acf.scene+":"+str.substr(6));
           console.log(parseInt(e.acf.heure.substr(0,2))+2)
-          console.log(parseInt(new Date().toLocaleTimeString().substr(0,2)) + deltaTime)
+          console.log(parseInt(new Date().toLocaleTimeString().substr(0,2)))
           
           if(e.acf.scene === str.substr(6)) temp.push({prog:e,mark:ee})
           }

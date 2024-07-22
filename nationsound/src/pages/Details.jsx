@@ -8,6 +8,8 @@ import { Col, Row } from "react-bootstrap";
 
 function Details() {
     const concert = useContext(ConcertContext);
+    console.log(`concert:${JSON.stringify(concert)} with ${Object.keys(concert).length} keys`)
+    if (concert.groupe!==undefined)  
     return (
         <Row className={"p-3 border rounded shadow bg-light mb-5 mx-1"}>
             <Col className="col-12 p-3 border rounded bg-secondary">
@@ -33,6 +35,9 @@ function Details() {
             </Col>
         </Row>
     );
+    else
+    return(<div><h1>"pas de données disponibles"</h1>
+    <img src="/images/imageBg.jpg" alt="background concert" /></div> )
 };
 
 export default Details;
